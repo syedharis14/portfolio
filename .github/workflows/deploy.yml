@@ -33,6 +33,9 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: "true"
+          # Optional: add a repo secret named WEB3FORMS_KEY to enable direct contact-form
+          # sending (https://web3forms.com). If unset, the form falls back to mailto.
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
       - name: Disable Jekyll (serve _next/ as-is)
         run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3

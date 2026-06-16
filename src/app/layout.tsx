@@ -11,7 +11,7 @@ const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", disp
 const jet = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet", display: "swap" });
 const press = Press_Start_2P({ subsets: ["latin"], weight: "400", variable: "--font-press", display: "swap" });
 
-const siteUrl = "https://syedharis.dev"; // PLACEHOLDER — set your domain
+const siteUrl = "https://syedharis14.github.io/portfolio"; // GitHub Pages
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

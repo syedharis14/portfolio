@@ -6,6 +6,15 @@ import { profile } from "@/content/profile";
 import { Icon } from "../ui/Icon";
 import { cn } from "@/lib/cn";
 
+/**
+ * Direct-send contact form.
+ * Works on a static host (GitHub Pages) by posting to Web3Forms — no server needed.
+ * Get a free, public-safe access key at https://web3forms.com and either paste it
+ * below or set NEXT_PUBLIC_WEB3FORMS_KEY in the build env.
+ * If no key is configured, the form falls back to opening the visitor's mail client.
+ */
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ""; // PLACEHOLDER
+
 const projectTypes = [
   "New product build",
   "Rescue / scale an existing codebase",
@@ -20,25 +29,56 @@ const fieldCls =
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    type: projectTypes[0],
-    message: "",
-  });
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", type: projectTypes[0], message: "", botcheck: "" });
+
+  const directSend = Boolean(WEB3FORMS_ACCESS_KEY);
 
   function set<K extends keyof typeof form>(k: K, v: string) {
     setForm((f) => ({ ...f, [k]: v }));
   }
 
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function mailtoFallback() {
     const subject = `New project enquiry — ${form.type}`;
     const body = `Name: ${form.name}\nEmail: ${form.email}\nProject type: ${form.type}\n\n${form.message}`;
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSent(true);
+  }
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    if (form.botcheck) return; // honeypot tripped
+
+    if (!directSend) {
+      mailtoFallback();
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New project enquiry — ${form.type}`,
+          from_name: `${form.name} (portfolio)`,
+          replyto: form.email,
+          name: form.name,
+          email: form.email,
+          message: `Project type: ${form.type}\n\n${form.message}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) setSent(true);
+      else setError(data.message || "Something went wrong. Email me directly instead.");
+    } catch {
+      setError("Couldn't reach the server. Email me directly instead.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -54,11 +94,19 @@ export function ContactForm() {
             <span className="grid h-14 w-14 place-items-center voxel-edge bg-grass/15 text-grass">
               <Icon name="check" size={26} />
             </span>
-            <h3 className="font-display text-xl font-semibold text-ink">Your email client is open</h3>
+            <h3 className="font-display text-xl font-semibold text-ink">
+              {directSend ? "Message sent" : "Your email client is open"}
+            </h3>
             <p className="max-w-sm text-sm text-ink-dim">
-              If it didn&apos;t pop up, just reach me directly at{" "}
-              <a className="text-grass hover:underline" href={`mailto:${profile.email}`}>{profile.email}</a>.
-              I reply within a day.
+              {directSend
+                ? "Thanks — it's on its way. I reply within a day."
+                : "If it didn't pop up, "}
+              {!directSend && (
+                <>
+                  just reach me at{" "}
+                  <a className="text-grass hover:underline" href={`mailto:${profile.email}`}>{profile.email}</a>.
+                </>
+              )}
             </p>
             <button onClick={() => setSent(false)} className="mt-2 font-mono text-xs text-ink-faint hover:text-grass">
               ← send another
@@ -105,12 +153,26 @@ export function ContactForm() {
               />
             </label>
 
+            {/* honeypot — hidden from users, catches bots */}
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.botcheck}
+              onChange={(e) => set("botcheck", e.target.value)}
+              className="hidden"
+              aria-hidden
+            />
+
+            {error && <p className="font-mono text-xs text-redstone">{error}</p>}
+
             <button
               type="submit"
-              className="group inline-flex w-full items-center justify-center gap-2 bg-grass px-6 py-3.5 text-sm font-medium text-void voxel-edge transition-colors hover:bg-emerald sm:w-auto"
+              disabled={sending}
+              className="group inline-flex w-full items-center justify-center gap-2 bg-grass px-6 py-3.5 text-sm font-medium text-void voxel-edge transition-colors hover:bg-emerald disabled:opacity-60 sm:w-auto"
             >
-              Send enquiry
-              <Icon name="arrow-right" size={16} className="transition-transform group-hover:translate-x-0.5" />
+              {sending ? "Sending…" : "Send enquiry"}
+              {!sending && <Icon name="arrow-right" size={16} className="transition-transform group-hover:translate-x-0.5" />}
             </button>
           </motion.form>
         )}
