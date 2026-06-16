@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — hybrid premium + voxel theme
+ * Sleek near-black base, Minecraft-derived accent palette
+ * (grass / emerald / diamond / gold / redstone / amethyst).
+ * ------------------------------------------------------------------ */
+@theme {
+  /* surfaces */
+  --color-void: #060807;
+  --color-deep: #0a0f0d;
+  --color-panel: #0e1512;
+  --color-panel-2: #131c18;
+  --color-line: #1d2a23;
+  --color-line-2: #2a3a31;
+
+  /* text */
+  --color-ink: #e9f1ea;
+  --color-ink-dim: #a7b7ad;
+  --color-ink-faint: #6c7d72;
+
+  /* accents */
+  --color-grass: #6cdf6c;
+  --color-emerald: #2ee59d;
+  --color-diamond: #58e0e6;
+  --color-gold: #ffc83a;
+  --color-redstone: #ff5d5d;
+  --color-amethyst: #b388ff;
+
+  /* fonts (vars provided by next/font in layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jet), ui-monospace, monospace;
+  --font-pixel: var(--font-press), monospace;
+
+  /* motion */
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-blink: blink 1.1s step-end infinite;
+  --animate-grid: gridMove 22s linear infinite;
+  --animate-scan: scan 6s linear infinite;
+  --animate-spin-slow: spin 26s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 -48px; }
+}
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(2000%); }
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+* { border-color: var(--color-line); }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Ambient page background: radial glow + faint voxel grid */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60rem 60rem at 75% -10%, color-mix(in oklab, var(--color-emerald) 14%, transparent), transparent 60%),
+    radial-gradient(50rem 50rem at 10% 110%, color-mix(in oklab, var(--color-diamond) 10%, transparent), transparent 55%),
+    var(--color-void);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 30%, transparent 80%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-grass) 35%, transparent);
+  color: #fff;
+}
+
+/* Custom cursor: hide native pointer only once JS mounts on fine pointers */
+@media (pointer: fine) {
+  body.cursor-ready,
+  body.cursor-ready a,
+  body.cursor-ready button { cursor: none; }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-deep); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-2);
+  border: 2px solid var(--color-deep);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-grass); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+@utility glass {
+  background: color-mix(in oklab, var(--color-panel) 80%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in oklab, var(--color-line-2) 80%, transparent);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--color-ink) 0%, var(--color-grass) 45%, var(--color-diamond) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility pixelated {
+  image-rendering: pixelated;
+}
+
+/* Voxel / blocky beveled edge (Minecraft-style raised block) */
+@utility voxel-edge {
+  box-shadow:
+    inset 2px 2px 0 0 color-mix(in oklab, #fff 14%, transparent),
+    inset -3px -3px 0 0 color-mix(in oklab, #000 45%, transparent);
+}
+
+@utility shimmer-text {
+  background: linear-gradient(90deg, var(--color-ink-faint) 0%, var(--color-ink) 20%, var(--color-ink-faint) 40%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+.label {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
