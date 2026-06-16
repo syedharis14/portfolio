@@ -19,7 +19,7 @@ export const profile: Profile = {
   subhead:
     "Full-stack & product engineer working across healthcare, automotive, fintech, and AI — from clean-architecture backends to polished web & mobile apps.",
   location: "Remote · Pakistan", // PLACEHOLDER — confirm
-  email: "syedharis14@gmail.com",
+  email: "sharisdev08@gmail.com",
   availability: "Available for contract & full-time work",
   badge: "Toptal Developer · Top 3% Global Talent",
   yearsExperience: "5+", // PLACEHOLDER — confirm
@@ -29,7 +29,7 @@ export const profile: Profile = {
     { label: "LinkedIn", url: "https://www.linkedin.com/in/syed-haris-024295184/", icon: "linkedin" },
     { label: "Toptal", url: "https://www.toptal.com/developers/resume/syed-haris", icon: "trophy" },
     { label: "npm", url: "https://www.npmjs.com/~syedharis14", icon: "package" },
-    { label: "Email", url: "mailto:syedharis14@gmail.com", icon: "mail" },
+    { label: "Email", url: "mailto:sharisdev08@gmail.com", icon: "mail" },
   ],
   values: [
     {
