@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { profile } from "@/content/profile";
 import { Icon } from "./Icon";
+import { playChestOpen, playChestClose } from "@/lib/sound";
 
 const PIPS = ["#6cdf6c", "#58e0e6", "#ffc83a", "#ff5d5d", "#b388ff", "#2ee59d"];
 
@@ -13,14 +14,22 @@ export function SkillsChest() {
 
   // allow other components (e.g. the home "Open inventory" button) to open it
   useEffect(() => {
-    const openIt = () => setOpen(true);
+    const openIt = () => {
+      playChestOpen();
+      setOpen(true);
+    };
     window.addEventListener("open-skills", openIt);
     return () => window.removeEventListener("open-skills", openIt);
   }, []);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        playChestClose();
+        setOpen(false);
+      }
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -33,7 +42,10 @@ export function SkillsChest() {
     <>
       {/* floating chest button */}
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          playChestOpen();
+          setOpen(true);
+        }}
         aria-label="Open skill inventory"
         data-cursor
         className="group fixed bottom-5 right-5 z-40 flex flex-col items-center gap-1.5"
@@ -56,7 +68,13 @@ export function SkillsChest() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="absolute inset-0 bg-void/85 backdrop-blur-md" onClick={() => setOpen(false)} />
+            <div
+              className="absolute inset-0 bg-void/85 backdrop-blur-md"
+              onClick={() => {
+                playChestClose();
+                setOpen(false);
+              }}
+            />
 
             <motion.div
               role="dialog"
@@ -75,7 +93,10 @@ export function SkillsChest() {
                   <h2 className="font-pixel text-[11px] text-ink">Skill Inventory</h2>
                 </div>
                 <button
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    playChestClose();
+                    setOpen(false);
+                  }}
                   aria-label="Close"
                   className="grid h-8 w-8 place-items-center border border-line-2 text-ink-dim transition-colors hover:border-redstone/60 hover:text-redstone"
                 >
