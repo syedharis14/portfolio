@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { VoxelPlayground } from "@/components/three/VoxelPlayground";
+import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 
 export const metadata: Metadata = {
   title: "About",
@@ -36,7 +37,7 @@ export default function AboutPage() {
             <Reveal delay={0.1}>
               <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-ink-dim">
                 <p>
-                  I&apos;m {profile.name} — a Toptal-vetted full-stack and product engineer (part of
+                  I&apos;m {profile.name} — a Toptal-vetted Principal Software Engineer (part of
                   the network&apos;s top 3% of global talent). My happy place is the whole stack: a
                   clean, domain-driven backend; a fast, considered frontend; a mobile app that feels
                   native; and the integrations, queues and pipelines that hold it all together in
@@ -98,6 +99,9 @@ export default function AboutPage() {
           ))}
         </RevealGroup>
       </section>
+
+      {/* experience */}
+      <ExperienceTimeline />
 
       {/* principles */}
       <section className="mx-auto mt-24 max-w-7xl px-5 sm:px-8">

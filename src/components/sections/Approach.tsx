@@ -3,12 +3,14 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import { Icon } from "../ui/Icon";
 import { Marquee } from "../ui/Marquee";
+import { OpenInventoryButton } from "../ui/OpenInventoryButton";
 
 export function Approach() {
   const allTech = profile.skills.flatMap((g) => g.items);
+  const total = allTech.length;
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
+    <section className="relative overflow-hidden pb-24 pt-10 sm:pb-32">
       {/* tech marquee strip */}
       <Reveal>
         <div className="border-y border-line/70 bg-deep/60 py-4">
@@ -22,7 +24,7 @@ export function Approach() {
         </div>
       </Reveal>
 
-      <div className="mx-auto mt-20 max-w-7xl px-5 sm:px-8">
+      <div className="mx-auto mt-16 max-w-7xl px-5 sm:px-8">
         <SectionHeading
           kicker="How I Build"
           title={<>Principles I <span className="text-gradient">don&apos;t compromise</span> on</>}
@@ -44,35 +46,26 @@ export function Approach() {
           ))}
         </RevealGroup>
 
-        {/* skills */}
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink">
-              A full-stack toolkit
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-dim">
-              From database schema to deploy pipeline — backend, web, mobile, AI and the
-              integrations that tie them together.
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:col-span-8">
-            {profile.skills.map((g) => (
-              <Reveal key={g.label}>
-                <p className="label mb-3 text-grass">{g.label}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {g.items.map((s) => (
-                    <span
-                      key={s}
-                      className="border border-line/70 bg-panel/50 px-2.5 py-1 font-mono text-[11px] text-ink-dim transition-colors hover:border-grass/50 hover:text-grass"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </Reveal>
-            ))}
+        {/* toolkit → opens the inventory chest */}
+        <Reveal>
+          <div className="mt-10 flex flex-col items-start gap-5 glass border border-line-2 p-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center voxel-edge bg-grass/10 text-grass">
+                <Icon name="boxes" size={22} />
+              </span>
+              <div>
+                <h3 className="font-display text-xl font-semibold tracking-tight text-ink">
+                  A full-stack toolkit — {total}+ technologies
+                </h3>
+                <p className="mt-1 max-w-lg text-sm leading-relaxed text-ink-dim">
+                  Backend, web, mobile, AI and the integrations that tie them together. The full stack
+                  lives in the inventory chest.
+                </p>
+              </div>
+            </div>
+            <OpenInventoryButton />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

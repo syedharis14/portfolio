@@ -12,7 +12,7 @@ export const projects: Project[] = [
     name: "Relay Automotive",
     industry: "Automotive · Dealer SaaS",
     industryId: "automotive",
-    role: "Lead Full-Stack Engineer",
+    role: "Principal Software Engineer",
     period: "2024 — Present",
     status: "Live in production",
     accent: "diamond",
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     summary:
       "A multi-tenant platform pairing Dealership Production Management (DPM) with StaffMaster scheduling — live at US dealerships including Don McGill Toyota, Cardenas Enterprises and Sewell Mercedes-Benz.",
     overview:
-      "Relay is the system a dealership's floor actually runs on. I lead the backend architecture and build both the React/Vite web client and the Expo mobile app against a shared API contract. The product spans two surfaces — DPM for F&I deal flow and production reporting, and StaffMaster for employee scheduling — unified under one multi-tenant SaaS that plugs directly into each dealer's existing DMS. Every dealership is a tenant with its own data, roles and DMS provider, all served from one codebase.",
+      "Relay is the system a dealership's floor actually runs on. As the technical lead — now Principal Engineer on the project — I own the backend architecture, lead a team of 4, and build both the React/Vite web client and the Expo mobile app against a shared API contract. The product spans two surfaces — DPM for F&I deal flow and production reporting, and StaffMaster for employee scheduling — unified under one multi-tenant SaaS that plugs directly into each dealer's existing DMS. Every dealership is a tenant with its own data, roles and DMS provider, all served from one codebase.",
     stack: [
       "TypeScript", "NestJS 11", "Prisma", "PostgreSQL", "BullMQ", "Redis (ElastiCache)",
       "Pusher", "AWS ECS Fargate", "S3", "SES", "React 19", "Vite", "TanStack Query",

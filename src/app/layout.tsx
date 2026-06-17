@@ -5,6 +5,7 @@ import { profile } from "@/content/profile";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { Cursor } from "@/components/ui/Cursor";
+import { SkillsChest } from "@/components/ui/SkillsChest";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", display: "swap" });
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Cursor />
         <Nav />
         <main>{children}</main>
+        <SkillsChest />
         <Footer />
       </body>
     </html>

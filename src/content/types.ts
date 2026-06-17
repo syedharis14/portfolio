@@ -71,6 +71,19 @@ export type SkillGroup = {
   items: string[];
 };
 
+export type ExperienceRole = {
+  title: string;
+  period: string;
+  bullets: string[];
+};
+
+export type Experience = {
+  company: string;
+  url?: string;
+  /** Most recent role first. */
+  roles: ExperienceRole[];
+};
+
 export type Profile = {
   name: string;
   shortName: string;

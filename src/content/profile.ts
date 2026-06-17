@@ -10,14 +10,14 @@ export const profile: Profile = {
   shortName: "Haris",
   initials: "SH",
   roles: [
+    "Principal Software Engineer",
     "Full-Stack Engineer",
-    "Product Engineer",
     "Systems Architect",
     "AI Application Builder",
   ],
   headline: "I architect and ship production systems that real businesses run on.",
   subhead:
-    "Full-stack & product engineer working across healthcare, automotive, fintech, and AI — from clean-architecture backends to polished web & mobile apps.",
+    "Principal software engineer working across healthcare, automotive, fintech, and AI — from clean-architecture backends to polished web & mobile apps.",
   location: "Remote · Pakistan", // PLACEHOLDER — confirm
   email: "sharisdev08@gmail.com",
   availability: "Available for contract & full-time work",
