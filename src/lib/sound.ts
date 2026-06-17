@@ -6,7 +6,8 @@
 import { asset } from "./asset";
 
 let ctx: AudioContext | null = null;
-let preferFile = true;
+let preferOpenFile = true;
+let preferCloseFile = true;
 
 function getCtx(): AudioContext | null {
   if (typeof window === "undefined") return null;
@@ -86,23 +87,29 @@ function synthChest(reverse = false) {
   s.stop(t + 0.2);
 }
 
+function playFile(path: string, vol: number, onFail: () => void): boolean {
+  try {
+    const a = new Audio(asset(path));
+    a.volume = vol;
+    void a.play().catch(onFail);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function playChestOpen() {
-  if (preferFile && typeof window !== "undefined") {
-    try {
-      const a = new Audio(asset("/sounds/chest-open.mp3"));
-      a.volume = 0.5;
-      a.play().catch(() => {
-        preferFile = false;
-        synthChest(false);
-      });
-      return;
-    } catch {
-      preferFile = false;
-    }
+  if (preferOpenFile && typeof window !== "undefined") {
+    if (playFile("/sounds/chest-open.mp3", 0.55, () => { preferOpenFile = false; synthChest(false); })) return;
+    preferOpenFile = false;
   }
   synthChest(false);
 }
 
 export function playChestClose() {
+  if (preferCloseFile && typeof window !== "undefined") {
+    if (playFile("/sounds/chest-close.mp3", 0.5, () => { preferCloseFile = false; synthChest(true); })) return;
+    preferCloseFile = false;
+  }
   synthChest(true);
 }
