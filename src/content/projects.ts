@@ -68,6 +68,27 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "confidential-client-platform",
+    name: "Active Client Project",
+    industry: "Under NDA",
+    industryId: "confidential",
+    role: "Full-Stack Engineer · Toptal",
+    period: "2026 — Present",
+    status: "Under NDA",
+    confidential: true,
+    accent: "diamond",
+    featured: true,
+    client: "Confidential (via Toptal)",
+    tagline:
+      "An active client product I'm building under NDA — architecture and my role available on request, with the client's approval.",
+    summary:
+      "A production web platform I'm currently building end-to-end for a client through Toptal. It's covered by a non-disclosure agreement, so the name, domain and what it does stay private for now. I'm glad to walk through the engineering, my contributions and the tradeoffs in detail — just ask, and I'll share whatever the client has cleared.",
+    stack: [
+      "TypeScript", "Next.js 16", "React 19", "Supabase (Postgres)", "Row-Level Security",
+      "Realtime", "Stripe", "TanStack Query", "Tailwind CSS", "pgTAP", "Vitest",
+    ],
+  },
+  {
     slug: "brio-medical",
     name: "Brio Medical",
     industry: "Healthcare",

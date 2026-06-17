@@ -36,7 +36,9 @@ export function ProjectCard({ project, index }: { project: Project; index?: numb
               <p className={`font-mono text-[11px] ${accentText[project.accent]}`}>{project.industry}</p>
             </div>
           </div>
-          {project.status === "Live in production" ? (
+          {project.confidential ? (
+            <Badge tone="accent"><Icon name="lock" size={11} /> Under NDA</Badge>
+          ) : project.status === "Live in production" ? (
             <Badge tone="live">Live</Badge>
           ) : (
             <Badge>{project.status}</Badge>
@@ -67,7 +69,7 @@ export function ProjectCard({ project, index }: { project: Project; index?: numb
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-all duration-200 group-hover:gap-2.5"
             style={{ color: hex }}
           >
-            Case study <Icon name="arrow-up-right" size={15} />
+            {project.confidential ? "Details on request" : "Case study"} <Icon name="arrow-up-right" size={15} />
           </span>
         </div>
       </Link>
@@ -85,6 +87,7 @@ function industryIcon(id: string) {
     "sports-ai": "trophy",
     travel: "ship",
     devtools: "terminal",
+    confidential: "lock",
   };
   return map[id] ?? "boxes";
 }

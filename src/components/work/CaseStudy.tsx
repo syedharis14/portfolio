@@ -117,17 +117,42 @@ export function CaseStudy({ project, next }: { project: Project; next: Project }
           <p className="text-lg leading-relaxed text-ink">{project.summary}</p>
         </Reveal>
 
-        <Block title="Overview">
-          <p className="mt-5 text-[15px] leading-relaxed text-ink-dim">{project.overview}</p>
-        </Block>
-        <Block title="Problem">
-          <p className="mt-5 text-[15px] leading-relaxed text-ink-dim">{project.problem}</p>
-        </Block>
-        <Block title="Solution"><BulletList items={project.solution} hex={hex} /></Block>
-        <Block title="Results"><BulletList items={project.results} hex={hex} /></Block>
-        <Block title="Key Features"><BulletList items={project.keyFeatures} hex={hex} /></Block>
-        <Block title="Technical Details"><BulletList items={project.technicalDetails} hex={hex} /></Block>
-        <Block title="Lessons Learned"><BulletList items={project.lessons} hex={hex} /></Block>
+        {project.confidential && (
+          <Reveal as="section" className="py-2">
+            <div className="glass flex flex-col gap-5 border border-gold/40 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <span className="grid h-10 w-10 shrink-0 place-items-center voxel-edge bg-gold/15 text-gold">
+                  <Icon name="lock" size={18} />
+                </span>
+                <div>
+                  <p className="font-display text-base font-semibold text-ink">Under NDA</p>
+                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-ink-dim">
+                    Active client engagement — the product name and what it does stay private until the
+                    client clears them. I&apos;m happy to talk through the architecture, my role and the
+                    key decisions on request, sharing whatever the client has approved.
+                  </p>
+                </div>
+              </div>
+              <Button href="/contact" variant="block" icon="arrow-right">Request details</Button>
+            </div>
+          </Reveal>
+        )}
+
+        {project.overview && (
+          <Block title="Overview">
+            <p className="mt-5 text-[15px] leading-relaxed text-ink-dim">{project.overview}</p>
+          </Block>
+        )}
+        {project.problem && (
+          <Block title="Problem">
+            <p className="mt-5 text-[15px] leading-relaxed text-ink-dim">{project.problem}</p>
+          </Block>
+        )}
+        {project.solution && <Block title="Solution"><BulletList items={project.solution} hex={hex} /></Block>}
+        {project.results && <Block title="Results"><BulletList items={project.results} hex={hex} /></Block>}
+        {project.keyFeatures && <Block title="Key Features"><BulletList items={project.keyFeatures} hex={hex} /></Block>}
+        {project.technicalDetails && <Block title="Technical Details"><BulletList items={project.technicalDetails} hex={hex} /></Block>}
+        {project.lessons && <Block title="Lessons Learned"><BulletList items={project.lessons} hex={hex} /></Block>}
 
         <Block title="Stack">
           <div className="mt-5 flex flex-wrap gap-1.5">

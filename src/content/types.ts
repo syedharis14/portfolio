@@ -26,7 +26,9 @@ export type Project = {
   industryId: string;
   role: string;
   period: string;
-  status: "Live in production" | "Active development" | "Shipped" | "Published" | "Prototype";
+  status: "Live in production" | "Active development" | "Shipped" | "Published" | "Prototype" | "Under NDA";
+  /** Confidential client work — hides name/nature, shows only stack + an NDA notice. */
+  confidential?: boolean;
   /** One punchy line for cards + hero. */
   tagline: string;
   accent: AccentKey;
@@ -35,17 +37,18 @@ export type Project = {
   links?: ProjectLink[];
   metrics?: Metric[];
 
-  /* ---- Case-study body: the 8-section structure ---- */
+  /* ---- Case-study body: the 8-section structure ----
+     summary is always shown; the rest are omitted for confidential work. */
   /** Elevator pitch — 1–2 sentences. */
   summary: string;
   /** Fuller context: what it is, who it's for, my role, scope. */
-  overview: string;
-  problem: string;
-  solution: string[];
-  results: string[];
-  keyFeatures: string[];
-  technicalDetails: string[];
-  lessons: string[];
+  overview?: string;
+  problem?: string;
+  solution?: string[];
+  results?: string[];
+  keyFeatures?: string[];
+  technicalDetails?: string[];
+  lessons?: string[];
 
   /** Whether this is NDA/client work shown with permission. */
   client?: string;
