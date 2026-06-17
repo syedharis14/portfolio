@@ -18,6 +18,11 @@ export const projects: Project[] = [
     accent: "diamond",
     featured: true,
     client: "Relay Automotive",
+    links: [
+      { label: "Website", url: "https://relayautomotive.com/", kind: "live" },
+      { label: "Dashboard", url: "https://app.relayautomotive.com/", kind: "live" },
+      { label: "App Store", url: "https://apps.apple.com/pk/app/relay-automotive/id6469011236", kind: "appstore" },
+    ],
     tagline: "Production SaaS that real US car dealerships run their day on.",
     summary:
       "A multi-tenant platform pairing Dealership Production Management (DPM) with StaffMaster scheduling — live at US dealerships including Don McGill Toyota, Cardenas Enterprises and Sewell Mercedes-Benz.",
@@ -160,6 +165,9 @@ export const projects: Project[] = [
     accent: "grass",
     featured: true,
     client: "Fittish",
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/pk/app/fittish-ai/id6745184307", kind: "appstore" },
+    ],
     tagline: "AI-driven fitness & nutrition app with personalized plans and health-data sync.",
     summary:
       "A fitness SaaS pairing a clean-architecture NestJS backend with an Expo React Native app — AI generates personalized workout and meal plans, HealthKit/Health Connect sync real data, and Stripe + RevenueCat handle subscriptions.",
@@ -219,6 +227,7 @@ export const projects: Project[] = [
     status: "Active development",
     accent: "amethyst",
     featured: true,
+    links: [{ label: "Live demo", url: "https://crossroad-taupe.vercel.app/", kind: "live" }],
     tagline: "AI property-appraisal assistant — RAG + vision producing compliant valuation narratives.",
     summary:
       "An AI assistant that reads property PDFs, extracts facts via vision, and assesses UAD quality and condition to produce USPAP-compliant narrative reports — pairing a RAG pipeline with deterministic business-rule guardrails.",
@@ -274,6 +283,7 @@ export const projects: Project[] = [
     status: "Live in production",
     accent: "diamond",
     featured: false,
+    links: [{ label: "Live site", url: "http://polaradventure.com/", kind: "live" }],
     tagline: "Expedition-cruise booking platform — Laravel API + Next.js storefront with visual CMS.",
     summary:
       "A two-part platform for booking polar expedition cruises: a Laravel 10 API managing a 38-model cruise/fare/booking domain, and a Next.js storefront with a Makeswift visual CMS, OAuth, multi-step booking and a private-fare club.",
