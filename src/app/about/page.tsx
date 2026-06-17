@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { VoxelPlayground } from "@/components/three/VoxelPlayground";
 import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "About",
@@ -61,7 +62,7 @@ export default function AboutPage() {
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Button href="/contact" variant="primary" icon="arrow-right">Work with me</Button>
-                <a href={profile.resumeUrl} className="inline-flex items-center gap-1.5 text-sm text-ink-dim hover:text-ink">
+                <a href={asset(profile.resumeUrl)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-ink-dim hover:text-ink">
                   <Icon name="external-link" size={14} /> Download résumé
                 </a>
               </div>

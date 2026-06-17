@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   basePath: isPages ? `/${repo}` : undefined,
+  // expose the base path to the client so plain <a>/<img> asset URLs resolve
+  env: { NEXT_PUBLIC_BASE_PATH: isPages ? `/${repo}` : "" },
 };
 
 export default nextConfig;

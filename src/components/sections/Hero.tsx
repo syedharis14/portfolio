@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { profile } from "@/content/profile";
+import { asset } from "@/lib/asset";
 import { VoxelHero } from "../three/VoxelHero";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
@@ -92,7 +93,9 @@ export function Hero() {
               View the work
             </Button>
             <a
-              href={profile.resumeUrl}
+              href={asset(profile.resumeUrl)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-1 inline-flex items-center gap-1.5 text-sm text-ink-dim underline-offset-4 hover:text-ink hover:underline"
             >
               <Icon name="external-link" size={14} /> Résumé
