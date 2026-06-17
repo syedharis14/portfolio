@@ -24,9 +24,12 @@ export const projects: Project[] = [
     overview:
       "Relay is the system a dealership's floor actually runs on. As the technical lead — now Principal Engineer on the project — I own the backend architecture, lead a team of 4, and build both the React/Vite web client and the Expo mobile app against a shared API contract. The product spans two surfaces — DPM for F&I deal flow and production reporting, and StaffMaster for employee scheduling — unified under one multi-tenant SaaS that plugs directly into each dealer's existing DMS. Every dealership is a tenant with its own data, roles and DMS provider, all served from one codebase.",
     stack: [
-      "TypeScript", "NestJS 11", "Prisma", "PostgreSQL", "BullMQ", "Redis (ElastiCache)",
-      "Pusher", "AWS ECS Fargate", "S3", "SES", "React 19", "Vite", "TanStack Query",
-      "Zustand", "React Native", "Expo",
+      "TypeScript", "NestJS 11", "Prisma ORM", "PostgreSQL", "Redis (ElastiCache)", "BullMQ",
+      "Pusher (real-time)", "Reynolds DMS", "Fortellis", "CDK Global", "RouteOne", "Stripe",
+      "Persona (KYC)", "CometChat", "Firebase Admin", "React 19", "Vite", "TanStack Router",
+      "TanStack Query", "Zustand", "MUI", "Recharts", "FullCalendar", "React Native", "Expo",
+      "EAS", "NativeWind", "AWS ECS Fargate", "S3", "CloudFront", "SES", "Docker",
+      "Bitbucket Pipelines", "JWT + TOTP MFA",
     ],
     metrics: [
       { value: "3+", label: "dealerships live in prod" },
@@ -49,14 +52,14 @@ export const projects: Project[] = [
     ],
     keyFeatures: [
       "StaffMaster auto-scheduling engine (rotation / fixed / bi-weekly / mixed) with recurring-event expansion and swap broadcasting.",
-      "Reynolds + Fortellis DMS sync — inbound BOD ingestion and deal search.",
+      "DMS integrations across Reynolds, Fortellis and CDK Global, plus RouteOne credit-application webhooks — inbound BOD ingestion, deal search and credit decisions.",
       "Admin 'View as employee' impersonation with audit stamping.",
       "Expo mobile app shipped to TestFlight + Android, feature-parity with web, with geofencing and biometric auth.",
     ],
     technicalDetails: [
       "Clean architecture: adapters → application → domain ← infrastructure, with ~761 typed source files and a 2,300-line Prisma schema.",
       "Multi-tenancy enforced per-handler via dealershipId on every write path.",
-      "DMS integration via ports (IDmsDealFetcher / IDmsDealSyncer) resolved at runtime by a DmsResolverService — Reynolds BOD webhooks gzip-batched to S3, Fortellis over REST.",
+      "DMS integration via ports (IDmsDealFetcher / IDmsDealSyncer) resolved at runtime by a DmsResolverService — Reynolds BOD webhooks gzip-batched to S3, Fortellis and CDK Global over REST, and RouteOne credit-application webhooks.",
       "BullMQ workers in a separate worker process handle high-volume inbound deal processing with retries, backoff and idempotency hashes.",
       "Pusher channels (DASHBOARD_UPDATE, DEAL_CHANGE, VACATION_BALANCE_UPDATE) drive live dashboards across web + mobile.",
       "JWT auth with TOTP / email-OTP MFA, role guards, dealership-scope guards, and admin impersonation stamped with full audit trails.",
@@ -76,6 +79,7 @@ export const projects: Project[] = [
     period: "2026 — Present",
     status: "Under NDA",
     confidential: true,
+    toptal: true,
     accent: "diamond",
     featured: true,
     client: "Confidential (via Toptal)",
@@ -84,8 +88,9 @@ export const projects: Project[] = [
     summary:
       "A production web platform I'm currently building end-to-end for a client through Toptal. It's covered by a non-disclosure agreement, so the name, domain and what it does stay private for now. I'm glad to walk through the engineering, my contributions and the tradeoffs in detail — just ask, and I'll share whatever the client has cleared.",
     stack: [
-      "TypeScript", "Next.js 16", "React 19", "Supabase (Postgres)", "Row-Level Security",
-      "Realtime", "Stripe", "TanStack Query", "Tailwind CSS", "pgTAP", "Vitest",
+      "TypeScript", "Next.js 16", "React 19", "Server Components", "Supabase", "Supabase Auth",
+      "Supabase Realtime", "PostgreSQL", "Row-Level Security", "Stripe", "React Hook Form", "Zod",
+      "TanStack Query", "Tailwind CSS", "OneSignal", "Resend", "pgTAP", "Vitest", "Vercel",
     ],
   },
   {
@@ -105,8 +110,9 @@ export const projects: Project[] = [
     overview:
       "Brio Medical is a healthcare management platform for clinical operations. I worked across the stack — designing the relational data model, building the contract-driven REST API, and developing the interfaces clinical staff use day to day. The guiding constraint throughout was that this is sensitive medical data, so secure handling and predictable access weren't features bolted on at the end; they shaped the architecture from the very first table.",
     stack: [
-      "Node.js (NestJS-style layered architecture)", "TypeScript", "React", "SQL",
-      "REST", "class-validator / Zod", "Docker", "CI/CD",
+      "TypeScript", "Node.js", "NestJS-style layered architecture", "Express", "PostgreSQL",
+      "REST APIs", "class-validator / Zod", "Role-based access control", "JWT auth",
+      "Pagination & filtering", "React", "Docker", "CI/CD",
     ],
     metrics: [
       { value: "DDM", label: "domain-driven data model" },
@@ -160,9 +166,11 @@ export const projects: Project[] = [
     overview:
       "Fittish is a consumer fitness product: a clean-architecture NestJS backend feeding an Expo React Native app on iOS and Android. I built across both. The hard part isn't the UI — it's generating genuinely personalized plans from a structured assessment, syncing against the user's real device health data, and monetizing reliably. The backend owns AI plan generation and the job queue; the app owns a polished, offline-tolerant experience.",
     stack: [
-      "NestJS 11", "Prisma", "PostgreSQL", "Redis", "BullMQ", "OpenAI", "LangChain / LangGraph",
-      "Stripe", "RevenueCat", "React 19", "React Native 0.79", "Expo 53", "NativeWind",
-      "TanStack Query", "Zustand", "AWS S3",
+      "TypeScript", "NestJS 11", "Prisma ORM", "PostgreSQL", "Redis", "BullMQ", "OpenAI GPT-4o",
+      "LangChain", "LangGraph", "Tavily", "Apple HealthKit", "Google Health Connect", "Stripe",
+      "RevenueCat", "Google & Apple Sign-In", "Mailgun", "React 19", "React Native 0.79",
+      "Expo 53", "Expo Router", "EAS", "NativeWind", "TanStack Query", "Zustand", "AWS S3",
+      "AWS ECS", "Docker", "GitHub Actions",
     ],
     metrics: [
       { value: "AI", label: "plan generation" },
@@ -217,8 +225,9 @@ export const projects: Project[] = [
     overview:
       "Crossroads is an AI assistant for property appraisal. It ingests property PDFs, extracts facts with vision, and produces USPAP-compliant valuation narratives. I built the reasoning pipeline. The core challenge is correctness: appraisal has hard rules, and a fluent-but-wrong rating is worse than no answer — so the system layers deterministic guardrails on top of probabilistic LLM output rather than trusting the model to follow the rules on its own.",
     stack: [
-      "Next.js 14", "TypeScript", "OpenAI GPT-4o", "text-embedding-3-large", "Google Gemini (vision)",
-      "Supabase", "pgvector", "Zod", "Playwright", "Vitest",
+      "Next.js 14", "TypeScript", "React 18", "OpenAI GPT-4o", "text-embedding-3-large",
+      "Google Gemini (vision)", "RAG", "Supabase", "PostgreSQL", "pgvector", "Zod",
+      "Tailwind CSS", "react-markdown", "Playwright", "Vitest", "Vercel",
     ],
     metrics: [
       { value: "2-pass", label: "reasoning pipeline" },
@@ -271,8 +280,10 @@ export const projects: Project[] = [
     overview:
       "Polar Adventure is an expedition-cruise booking platform: a Laravel API over a deeply relational cruise/fare/booking domain, and a Next.js storefront with a Makeswift visual CMS. The tension to resolve was complexity versus editability — booking flows are intricate, yet marketing needed to change pages without a developer in the loop.",
     stack: [
-      "PHP 8", "Laravel 10", "MySQL", "Next.js 13", "React 18", "React Query", "Makeswift CMS",
-      "Firebase", "AWS S3", "DomPDF", "Bootstrap 5",
+      "PHP 8", "Laravel 10", "MySQL", "Laravel Sanctum + Passport", "Socialite (OAuth)",
+      "Widgety", "Touramigo", "Microsoft Graph (mail)", "Laravel Queues & Jobs", "DomPDF",
+      "Intervention Image", "AWS S3", "Next.js 13", "React 18", "React Query", "Makeswift CMS",
+      "Firebase", "Bootstrap 5", "Google Maps", "reCAPTCHA",
     ],
     metrics: [
       { value: "38", label: "Eloquent domain models" },
@@ -325,8 +336,9 @@ export const projects: Project[] = [
     overview:
       "PNLSaver is a personal product: an automated Binance scalping engine with a Next.js control dashboard. It scans markets continuously, only acts on high-quality setups, and enforces strict risk rules even when running unattended on a cron. The point was to remove emotion and latency from scalping while never breaking the risk budget.",
     stack: [
-      "NestJS 11", "TypeScript", "Supabase", "PostgreSQL", "binance-api-node", "Next.js 15",
-      "React 19", "Winston", "Resend", "node cron",
+      "TypeScript", "NestJS 11", "Supabase", "PostgreSQL", "Binance API (binance-api-node)",
+      "@nestjs/schedule (cron)", "Distributed locks", "OpenAI (trade validation)", "Winston",
+      "Resend", "Next.js 15", "React 19", "Tailwind CSS",
     ],
     metrics: [
       { value: "1m–15m", label: "multi-timeframe scans" },
@@ -376,8 +388,8 @@ export const projects: Project[] = [
     overview:
       "git-ai-commit is an open-source CLI I built, published and use daily. It reads your staged diff and proposes a Conventional Commit message. The design goal was zero friction: fast, scriptable, and never wresting control away from the developer — it suggests, you decide.",
     stack: [
-      "TypeScript", "Node.js", "Commander", "OpenAI (GPT-4o)", "simple-git", "Winston",
-      "Jest", "GitHub Actions",
+      "TypeScript", "Node.js", "Commander", "OpenAI (GPT-4o)", "simple-git", "cosmiconfig",
+      "clipboardy", "Winston", "Jest", "GitHub Actions", "standard-version", "npm + GitHub Packages",
     ],
     links: [
       { label: "npm", url: "https://www.npmjs.com/package/@syedharis14/git-ai-commit", kind: "npm" },

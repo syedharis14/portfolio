@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { TiltCard } from "../ui/TiltCard";
 import { Badge } from "../ui/Badge";
+import { ToptalBadge } from "../ui/ToptalBadge";
 import { Icon } from "../ui/Icon";
 import { accentHex, accentText } from "@/lib/accents";
 import type { Project } from "@/content/types";
@@ -36,13 +37,16 @@ export function ProjectCard({ project, index }: { project: Project; index?: numb
               <p className={`font-mono text-[11px] ${accentText[project.accent]}`}>{project.industry}</p>
             </div>
           </div>
-          {project.confidential ? (
-            <Badge tone="accent"><Icon name="lock" size={11} /> Under NDA</Badge>
-          ) : project.status === "Live in production" ? (
-            <Badge tone="live">Live</Badge>
-          ) : (
-            <Badge>{project.status}</Badge>
-          )}
+          <div className="flex flex-col items-end gap-1.5">
+            {project.toptal && <ToptalBadge />}
+            {project.confidential ? (
+              <Badge tone="accent"><Icon name="lock" size={11} /> Under NDA</Badge>
+            ) : project.status === "Live in production" ? (
+              <Badge tone="live">Live</Badge>
+            ) : (
+              <Badge>{project.status}</Badge>
+            )}
+          </div>
         </div>
 
         <h3 className="font-display text-xl font-semibold tracking-tight text-ink">

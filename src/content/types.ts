@@ -29,6 +29,8 @@ export type Project = {
   status: "Live in production" | "Active development" | "Shipped" | "Published" | "Prototype" | "Under NDA";
   /** Confidential client work — hides name/nature, shows only stack + an NDA notice. */
   confidential?: boolean;
+  /** Engagement sourced via Toptal — renders a Toptal badge on the card & case study. */
+  toptal?: boolean;
   /** One punchy line for cards + hero. */
   tagline: string;
   accent: AccentKey;

@@ -6,7 +6,7 @@ import { Button } from "../ui/Button";
 
 export function FeaturedWork() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading

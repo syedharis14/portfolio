@@ -10,7 +10,7 @@ export function Approach() {
   const total = allTech.length;
 
   return (
-    <section className="relative overflow-hidden pb-24 pt-10 sm:pb-32">
+    <section className="relative overflow-hidden pb-24 pt-0 sm:pb-32">
       {/* tech marquee strip */}
       <Reveal>
         <div className="border-y border-line/70 bg-deep/60 py-4">

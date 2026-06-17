@@ -3,6 +3,7 @@ import type { Project } from "@/content/types";
 import { accentHex } from "@/lib/accents";
 import { Reveal } from "../ui/Reveal";
 import { Badge } from "../ui/Badge";
+import { ToptalBadge } from "../ui/ToptalBadge";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 
@@ -49,6 +50,7 @@ export function CaseStudy({ project, next }: { project: Project; next: Project }
         <Reveal delay={0.05}>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="label" style={{ color: hex }}>{project.industry}</span>
+            {project.toptal && <ToptalBadge />}
             {project.status === "Live in production" ? (
               <Badge tone="live">Live in production</Badge>
             ) : (

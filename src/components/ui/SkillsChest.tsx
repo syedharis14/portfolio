@@ -123,14 +123,33 @@ export function SkillsChest() {
   );
 }
 
-/** CSS voxel double-chest. */
+/** Pixel-art Minecraft chest (SVG). */
 function Chest() {
   return (
-    <>
-      <span className="absolute inset-0 bg-[#7a4f25] voxel-edge" />
-      <span className="absolute inset-x-0 top-0 h-[34%] bg-[#8c5d2c] voxel-edge" />
-      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-black/40" />
-      <span className="absolute left-1/2 top-[26%] h-[34%] w-[14%] -translate-x-1/2 bg-[#d2cabb] voxel-edge" />
-    </>
+    <svg viewBox="0 0 36 28" className="h-full w-full" shapeRendering="crispEdges" aria-hidden>
+      {/* dark outline */}
+      <rect x="0" y="1" width="36" height="27" fill="#231908" />
+      {/* lid */}
+      <rect x="2" y="2" width="32" height="10" fill="#8a5d2b" />
+      <rect x="2" y="2" width="32" height="2" fill="#a97e41" />
+      <rect x="2" y="11" width="32" height="1" fill="#5a3d1d" />
+      {/* base */}
+      <rect x="2" y="13" width="32" height="13" fill="#7a522a" />
+      <rect x="2" y="13" width="32" height="1" fill="#946233" />
+      <rect x="2" y="22" width="32" height="4" fill="#5a3d1d" />
+      {/* edge bevels */}
+      <rect x="2" y="2" width="1" height="24" fill="#a97e41" />
+      <rect x="33" y="2" width="1" height="24" fill="#4d3416" />
+      {/* plank seams (double-chest) */}
+      <rect x="12" y="2" width="1" height="24" fill="#00000038" />
+      <rect x="24" y="2" width="1" height="24" fill="#00000038" />
+      {/* iron latch */}
+      <rect x="15" y="8" width="6" height="10" fill="#d3ccbc" />
+      <rect x="15" y="8" width="6" height="2" fill="#ece6d8" />
+      <rect x="19" y="8" width="2" height="10" fill="#a8a191" />
+      <rect x="15" y="16" width="6" height="2" fill="#a8a191" />
+      {/* keyhole */}
+      <rect x="17" y="11" width="2" height="4" fill="#33301f" />
+    </svg>
   );
 }
