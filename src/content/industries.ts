@@ -24,7 +24,7 @@ export const industries: Industry[] = [
       "Multi-tenant dealership platforms, F&I deal flow, staff scheduling and live DMS integrations.",
     accent: "diamond",
     icon: "car",
-    projectSlugs: ["relay-automotive", "people-fleet"],
+    projectSlugs: ["relay-automotive"],
   },
   {
     id: "fitness",

@@ -181,62 +181,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "people-fleet",
-    name: "People Fleet",
-    industry: "Automotive Retail · Marketplace",
-    industryId: "automotive",
-    role: "Full-Stack Engineer (Toptal)",
-    period: "2026",
-    status: "Active development",
-    accent: "diamond",
-    featured: true,
-    client: "People Fleet (via Toptal)",
-    tagline: "Fleet-discount car marketplace with Stripe Connect payouts and atomic inventory locks.",
-    summary:
-      "A SaaS marketplace connecting buyers with dealerships through 'blocks' of five vehicles sold at fleet discounts — buyers lock a vehicle with a $500 deposit and Stripe Connect splits payouts between dealership and platform.",
-    overview:
-      "People Fleet is a Toptal client build: a marketplace where dealerships list 'blocks' of five vehicles at fleet discounts and buyers lock one with a deposit. The interesting engineering is concurrency and money — making sure two buyers can't claim the same slot and that a capped 'Founding Member' tier never over-sells, while Stripe Connect splits each payment between the platform and the dealership. Built on Next.js 16 and Supabase with row-level security throughout.",
-    stack: [
-      "Next.js 16", "React 19", "TypeScript", "Supabase (Postgres 17)", "RLS", "Realtime",
-      "Stripe Connect", "TanStack Query", "Tailwind 4", "pgTAP", "Vitest", "OneSignal", "Resend",
-    ],
-    metrics: [
-      { value: "3", label: "tenant roles (buyer/dealer/admin)" },
-      { value: "54+", label: "database migrations" },
-      { value: "$500", label: "atomic lock payments" },
-      { value: "100%", label: "tables behind RLS" },
-    ],
-    problem:
-      "Bulk vehicle distribution needs transparent pricing, pre-approved buyer matching and bulletproof concurrency — two buyers must never lock the same vehicle, and a limited 'Founding Member' tier must never over-sell its slots.",
-    solution: [
-      "Modelled the domain as Dealerships → time-bound Blocks → Vehicles → Locks (purchase intents), with explicit state machines for blocks and subscriptions.",
-      "Implemented Stripe Connect with a separate charges + transfers model (chosen deliberately over capture_method: manual to support an 8-day dispute hold beyond Stripe's 7-day limit).",
-      "Secured every table with row-level security policies tied to role and block lifecycle.",
-      "Wrote pgTAP concurrency tests proving atomic slot claims serialize correctly.",
-    ],
-    results: [
-      "Shipping on schedule against a structured weekly build plan for a non-technical client.",
-      "Deployed to Vercel with cloud Supabase and a full RLS audit.",
-    ],
-    keyFeatures: [
-      "$500 deposit lock flow with Stripe idempotency keys per lock.",
-      "Founding-Member atomic slot claim (first 20 dealerships locked at a fixed rate).",
-      "Real-time block availability with timezone-pinned countdowns.",
-      "pgTAP + Vitest test suite covering RLS and concurrency.",
-    ],
-    technicalDetails: [
-      "Founding-Member tier guarded with SELECT … FOR UPDATE row locking, verified by a dedicated race-condition test.",
-      "Encrypted EINs via pgp_sym_encrypt, exposing only last-four to the UI.",
-      "Supabase Realtime drives live availability counters and countdown timers.",
-      "Server Components by default; Stripe webhooks reconcile subscription state machines.",
-    ],
-    lessons: [
-      "SELECT … FOR UPDATE plus a pgTAP race-condition test was the only way I trusted the Founding-Member cap under concurrency — proving it beats hoping.",
-      "Choosing separate charges + transfers over manual capture came from a real constraint (an 8-day dispute hold exceeding Stripe's 7-day capture limit); reading the payment docs closely saved a redesign later.",
-      "Putting every table behind row-level security from day one — rather than enforcing access in app code — made the security model legible and hard to bypass.",
-    ],
-  },
-  {
     slug: "crossroads",
     name: "Crossroads",
     industry: "PropTech · Real Estate",
