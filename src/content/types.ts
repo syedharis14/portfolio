@@ -99,7 +99,7 @@ export type Profile = {
   /** Credential chip, e.g. Toptal. */
   badge: string;
   yearsExperience: string;
-  resumeUrl?: string;
+  resumeUrl: string;
   socials: { label: string; url: string; icon: string }[];
   values: { title: string; body: string; icon: string }[];
   skills: SkillGroup[];

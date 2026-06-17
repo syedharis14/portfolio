@@ -5,7 +5,7 @@ import { VoxelCube } from "../ui/VoxelCube";
 
 export function ContactCTA() {
   return (
-    <section className="relative overflow-hidden pt-10 pb-24 sm:pt-14 sm:pb-32">
+    <section className="relative overflow-hidden pt-0 pb-24 sm:pb-28">
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
         <Reveal>
           <div className="glass relative overflow-hidden border border-line-2 px-6 py-16 text-center sm:px-16 sm:py-20">

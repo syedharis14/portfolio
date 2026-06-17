@@ -8,7 +8,7 @@ import { accentHex } from "@/lib/accents";
 
 export function Industries() {
   return (
-    <section id="industries" className="relative py-24 sm:py-32">
+    <section id="industries" className="relative pt-16 pb-16 sm:pt-20 sm:pb-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           kicker="Biomes / Niches"
