@@ -67,6 +67,16 @@ export const industries: Industry[] = [
     projectSlugs: ["polar-adventure"],
   },
   {
+    id: "ecommerce",
+    name: "E-commerce & Packaging",
+    biome: "Trading Hall",
+    blurb:
+      "Catalog-scale storefronts with quote-first funnels, static-rendered product pages and SEO built in from the schema up.",
+    accent: "emerald",
+    icon: "boxes",
+    projectSlugs: ["custom-eagle-boxes"],
+  },
+  {
     id: "devtools",
     name: "Developer Tools & OSS",
     biome: "Crafting Table",

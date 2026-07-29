@@ -76,11 +76,11 @@ export const profile: Profile = {
     },
     {
       label: "Cloud & DevOps",
-      items: ["AWS (ECS, S3, SES, ElastiCache)", "Vercel", "Supabase", "Docker", "GitHub Actions", "Bitbucket Pipelines"],
+      items: ["AWS (ECS, S3, SES, ElastiCache)", "Vercel", "Netlify", "Supabase", "Docker", "GitHub Actions", "Bitbucket Pipelines"],
     },
     {
       label: "Integrations",
-      items: ["Stripe / Stripe Connect", "RevenueCat", "Pusher", "Firebase", "CometChat", "Persona KYC", "Reynolds & Fortellis DMS"],
+      items: ["Stripe / Stripe Connect", "RevenueCat", "Pusher", "Firebase", "CometChat", "Cloudinary", "Persona KYC", "Reynolds & Fortellis DMS"],
     },
   ],
 };
