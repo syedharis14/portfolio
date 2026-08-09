@@ -67,6 +67,16 @@ export const industries: Industry[] = [
     projectSlugs: ["polar-adventure"],
   },
   {
+    id: "construction",
+    name: "Construction & Heavy Equipment",
+    biome: "Quarry Works",
+    blurb:
+      "Quote-to-cash for crane and lifting operations — fleet assets, permits, job scheduling and field crews across web and mobile.",
+    accent: "gold",
+    icon: "hard-hat",
+    projectSlugs: ["crane-guys-platform"],
+  },
+  {
     id: "ecommerce",
     name: "E-commerce & Packaging",
     biome: "Trading Hall",
