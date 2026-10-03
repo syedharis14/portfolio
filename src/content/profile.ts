@@ -2,8 +2,7 @@ import type { Profile } from "./types";
 
 /**
  * Personal / positioning data.
- * NOTE → values marked PLACEHOLDER should be confirmed by Haris:
- *   location, yearsExperience, social URLs, resumeUrl.
+ * Synced against the Toptal resume (toptal.com/developers/resume/syed-haris).
  */
 export const profile: Profile = {
   name: "Syed Haris",
@@ -18,12 +17,12 @@ export const profile: Profile = {
   headline: "I architect and ship production systems that real businesses run on.",
   subhead:
     "Principal software engineer working across healthcare, automotive, fintech, and AI — from clean-architecture backends to polished web & mobile apps.",
-  location: "Remote · Pakistan", // PLACEHOLDER — confirm
+  location: "Lahore, Pakistan · Remote",
   email: "sharisdev08@gmail.com",
   availability: "Available for contract & full-time work",
-  badge: "Toptal Developer · Top 3% Global Talent",
-  yearsExperience: "5+", // PLACEHOLDER — confirm
-  resumeUrl: "/resume.pdf", // PLACEHOLDER — drop a PDF in /public
+  badge: "Toptal · Verified Expert in Engineering",
+  yearsExperience: "5+",
+  resumeUrl: "/resume.pdf",
   socials: [
     { label: "GitHub", url: "https://github.com/syedharis14", icon: "github" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/syed-haris-024295184/", icon: "linkedin" },
@@ -56,11 +55,11 @@ export const profile: Profile = {
   skills: [
     {
       label: "Languages",
-      items: ["TypeScript", "JavaScript", "PHP", "SQL", "Python (light)"],
+      items: ["TypeScript", "JavaScript", "Python", "PHP", "SQL", "GraphQL"],
     },
     {
       label: "Backend",
-      items: ["NestJS", "Node.js", "Express", "Laravel", "Prisma", "Sequelize", "PostgreSQL", "MySQL", "Redis", "BullMQ", "REST", "GraphQL"],
+      items: ["NestJS", "Node.js", "Express", "Fastify", "Laravel", "Prisma", "Sequelize", "PostgreSQL", "MySQL", "Redis", "BullMQ", "Elasticsearch", "REST", "GraphQL"],
     },
     {
       label: "Frontend",
@@ -72,15 +71,19 @@ export const profile: Profile = {
     },
     {
       label: "AI / ML",
-      items: ["OpenAI GPT-4o", "Google Gemini", "LangChain", "LangGraph", "RAG", "pgvector", "Embeddings"],
+      items: ["OpenAI GPT-4o", "Claude API", "Google Gemini", "Google Document AI", "LangChain", "LangGraph", "RAG", "pgvector", "Pinecone", "Embeddings"],
+    },
+    {
+      label: "Testing",
+      items: ["Vitest", "Jest", "Playwright", "pgTAP", "React Testing Library", "CodeQL", "Snyk"],
     },
     {
       label: "Cloud & DevOps",
-      items: ["AWS (ECS, S3, SES, ElastiCache)", "Vercel", "Netlify", "Supabase", "Docker", "GitHub Actions", "Bitbucket Pipelines"],
+      items: ["AWS (ECS, Lambda, RDS, S3, SES, SNS, SQS, IAM)", "Vercel", "Netlify", "Supabase", "Supabase Edge Functions", "Docker", "GitHub Actions", "Bitbucket Pipelines"],
     },
     {
       label: "Integrations",
-      items: ["Stripe / Stripe Connect", "RevenueCat", "Pusher", "Firebase", "CometChat", "Cloudinary", "Persona KYC", "Reynolds & Fortellis DMS"],
+      items: ["Stripe / Stripe Connect", "RevenueCat", "Twilio", "Resend", "OneSignal", "Pusher", "Firebase", "CometChat", "Keycloak", "Cloudinary", "Persona KYC", "Reynolds & Fortellis DMS", "ADP Payroll"],
     },
   ],
 };
