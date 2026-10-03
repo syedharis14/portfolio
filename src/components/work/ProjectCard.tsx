@@ -90,8 +90,10 @@ function industryIcon(id: string) {
     proptech: "building-2",
     "sports-ai": "trophy",
     travel: "ship",
+    construction: "hard-hat",
+    ecommerce: "boxes",
+    aerospace: "plane",
     devtools: "terminal",
-    confidential: "lock",
   };
   return map[id] ?? "boxes";
 }

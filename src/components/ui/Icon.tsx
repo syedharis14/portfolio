@@ -2,7 +2,7 @@ import {
   HeartPulse, Car, Dumbbell, Landmark, Building2, Trophy, Ship, Terminal,
   Package, Mail, Rocket, Layers, Brain, Infinity, ArrowRight, ArrowUpRight,
   ExternalLink, Sparkles, Boxes, Cpu, Database, Code2, Menu, X, MapPin,
-  CheckCheck, Lock, HardHat, type LucideProps,
+  CheckCheck, Lock, HardHat, Plane, type LucideProps,
 } from "lucide-react";
 
 /* lucide v1 dropped brand glyphs — supply our own. */
@@ -30,7 +30,7 @@ const registry: Record<string, React.ComponentType<LucideProps>> = {
   infinity: Infinity, "arrow-right": ArrowRight, "arrow-up-right": ArrowUpRight,
   "external-link": ExternalLink, sparkles: Sparkles, boxes: Boxes, cpu: Cpu,
   database: Database, code: Code2, menu: Menu, close: X, "map-pin": MapPin,
-  check: CheckCheck, lock: Lock, "hard-hat": HardHat, github: GithubGlyph,
+  check: CheckCheck, lock: Lock, "hard-hat": HardHat, plane: Plane, github: GithubGlyph,
   linkedin: LinkedinGlyph,
 };
 

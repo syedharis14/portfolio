@@ -21,10 +21,10 @@ export const industries: Industry[] = [
     name: "Automotive & Dealer SaaS",
     biome: "Iron Foundry",
     blurb:
-      "Multi-tenant dealership platforms, F&I deal flow, staff scheduling and live DMS integrations.",
+      "Multi-tenant dealership platforms and two-sided vehicle marketplaces — F&I deal flow, staff scheduling, escrowed deposits and live DMS integrations.",
     accent: "diamond",
     icon: "car",
-    projectSlugs: ["relay-automotive"],
+    projectSlugs: ["relay-automotive", "people-fleet"],
   },
   {
     id: "fitness",
@@ -85,6 +85,16 @@ export const industries: Industry[] = [
     accent: "emerald",
     icon: "boxes",
     projectSlugs: ["custom-eagle-boxes"],
+  },
+  {
+    id: "aerospace",
+    name: "Aerospace & Defense",
+    biome: "Hangar Deck",
+    blurb:
+      "AI-assisted technical documentation — semantic search and RAG chat over controlled aerospace and military manuals.",
+    accent: "amethyst",
+    icon: "plane",
+    projectSlugs: ["inspec-pro"],
   },
   {
     id: "devtools",
